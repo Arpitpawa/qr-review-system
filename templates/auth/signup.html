@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up – QR Review System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #c7f000, #a3e635);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .signup-card {
+      width: 100%;
+      max-width: 450px;
+      background: #fff;
+      padding: 36px 30px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .signup-card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 28px;
+    }
+
+    .signup-card p {
+      text-align: center;
+      color: #555;
+      margin-bottom: 26px;
+      font-size: 14px;
+    }
+
+    .signup-card input,
+    .signup-card select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    .signup-card button {
+      width: 100%;
+      padding: 14px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .extra-links {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="signup-card">
+  <h2>Create Account</h2>
+  <p>Start collecting Google reviews today</p>
+
+  <form method="POST">
+
+    <input type="text" name="name" placeholder="Full Name" required>
+
+    <input type="email" name="email" placeholder="Email address"
+           value="{{ request.args.get('email','') }}" required>
+
+    <input type="password" name="password" placeholder="Password" required>
+
+    <select name="role">
+      <option value="owner">Business Owner</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <div class="extra-links">
+    Already have an account? <a href="/login">Login</a>
+  </div>
+</div>
+
+</body>
+</html>

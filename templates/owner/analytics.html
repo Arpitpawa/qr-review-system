@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Owner Analytics</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="background:#f8fafc;padding:30px">
+
+<h2>📊 Business Scan Analytics</h2>
+
+<canvas id="scanChart" height="120"></canvas>
+
+<script>
+const labels = {{ stats | map(attribute='name') | list | tojson }};
+const dataVals = {{ stats | map(attribute='count') | list | tojson }};
+
+new Chart(document.getElementById('scanChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Total Scans',
+      data: dataVals,
+      backgroundColor: '#2563eb'
+    }]
+  }
+});
+</script>
+
+</body>
+</html>

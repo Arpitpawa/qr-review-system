@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan History</title>
+</head>
+<body style="background:#f8fafc;padding:30px">
+
+<h2>📑 Scan History</h2>
+
+<table border="1" cellpadding="10" style="background:white">
+<tr>
+  <th>#</th>
+  <th>Scan Time</th>
+</tr>
+
+{% for s in scans %}
+<tr>
+  <td>{{ loop.index }}</td>
+  <td>{{ s.time }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+<a href="/dashboard">⬅ Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "hotel": [
+    "Excellent stay with very comfortable rooms and polite staff. The service was quick and professional, and the overall experience was truly relaxing. Highly recommended for families and couples.",
+    "Had a wonderful stay here. The rooms were clean, the food was delicious, and the staff was very supportive throughout our visit. Will definitely come again.",
+    "Great hospitality and very peaceful environment. Everything was well maintained and the service quality was top notch.",
+    "Amazing hotel with very friendly staff and beautiful ambience. The entire experience was smooth and comfortable.",
+    "Perfect place to stay with family. Clean rooms, quick service, and very professional management."
+  ],
+
+  "clinic": [
+    "Very professional doctors and supportive staff. The treatment was explained properly and everything was handled with great care.",
+    "Excellent medical service with clean environment and polite staff. I felt safe and well taken care of.",
+    "The doctor was very patient and knowledgeable. The staff guided me properly throughout the visit. Highly satisfied.",
+    "Great experience at the clinic. Proper hygiene, professional consultation, and quick service.",
+    "Very reliable clinic with experienced doctors and friendly staff. Highly recommended."
+  ],
+
+  "restaurant": [
+    "Amazing food with great taste and quick service. The staff was very polite and the ambience was lovely.",
+    "Delicious food and excellent customer service. The quality and hygiene were very impressive.",
+    "One of the best dining experiences I have had. The food was fresh, tasty, and served quickly.",
+    "Great atmosphere, tasty food, and very friendly staff. Highly recommended for family dining.",
+    "Fantastic place to eat with excellent food quality and fast service."
+  ],
+
+  "gym": [
+    "Very well equipped gym with professional trainers. The environment is motivating and clean.",
+    "Excellent gym with great machines and very supportive trainers. Highly satisfied with the facilities.",
+    "Best gym in the area with disciplined environment and helpful staff.",
+    "Great fitness center with modern equipment and experienced trainers.",
+    "Very positive workout environment with motivating trainers and clean facilities."
+  ],
+
+  "shop": [
+    "Good quality products at reasonable prices. The staff was helpful and polite.",
+    "Great shopping experience with wide variety of products and friendly staff.",
+    "Very reliable shop with good customer service and quality items.",
+    "The staff was cooperative and helped me find exactly what I needed.",
+    "Nice shop with good product range and professional service."
+  ],
+
+  "digital_agency": [
+    "Excellent service with very professional team. They understood my requirements clearly and delivered great results.",
+    "Very satisfied with the quality of work and quick response from the team.",
+    "Highly professional digital agency with great support and creative ideas.",
+    "Amazing experience working with this team. They are very skilled and reliable.",
+    "Great service and very cooperative staff. Totally satisfied with the output."
+  ],
+
+  "general": [
+    "Excellent service with very professional staff. Highly satisfied with the overall experience.",
+    "Very good experience with polite staff and quality service.",
+    "Great service and very supportive team. Totally recommended.",
+    "Highly professional service with great customer support.",
+    "Wonderful experience with smooth and hassle-free service."
+  ]
+}

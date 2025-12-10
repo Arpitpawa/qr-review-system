@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+/* GRID FIX */
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 340px));
+  gap: 24px;
+  justify-content: flex-start; /* stops full stretch */
+}
+
+/* CARD SIZE FIX */
+.business-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  text-align: center;
+  width: 100%;
+  max-width: 340px;
+}
+
+/* TEXT */
+.business-card h3 {
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+
+.business-card small {
+  color: var(--subtext);
+  font-size: 13px;
+}
+
+/* STATUS BADGE */
+.badge {
+  margin: 10px auto;
+  background: #dcfce7;
+  color: #166534;
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* SCAN COUNT */
+.scan-count {
+  margin-top: 6px;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 14px;
+}
+
+/* QR SIZE FIX */
+.qr-box {
+  margin: 14px 0;
+}
+
+.qr-box img {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background: white;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+}
+
+.btn-blue { background:#2563eb; color:white; }
+.btn-red { background:#dc2626; color:white; }
+
+.copy-btn {
+  margin-top: 8px;
+  background: #111;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  border: none;
+  font-size: 13px;
+}
+</style>
+
+<h2 style="margin-bottom:18px;">All Businesses</h2>
+
+<a href="/add-business" class="btn btn-blue" style="margin-bottom:20px;display:inline-block;">
+  ➕ Add Business
+</a>
+
+<div class="business-grid">
+{% for b in businesses %}
+
+<div class="business-card">
+
+  <h3>{{ b.name }}</h3>
+  <small>{{ b.owner_email }}</small>
+
+  <div class="badge">{{ b.status }}</div>
+  <div class="scan-count" id="scan-{{ b.id }}">Scans: --</div>
+
+  {% set qr_path = '/static/qr_codes/' + b.id + '.png' %}
+  <div class="qr-box">
+    <img src="{{ qr_path }}" onclick="openQR('{{ qr_path }}')">
+  </div>
+
+  <button class="copy-btn"
+    onclick="copyLink('{{ request.host_url.rstrip('/') }}/r/{{ b.id }}')">
+    Copy QR Link
+  </button>
+
+  <div class="btn-row">
+    <a download href="{{ qr_path }}" class="btn btn-blue">Download</a>
+    <a href="/delete-business/{{ b.id }}"
+       onclick="return confirm('Delete this business?')"
+       class="btn btn-red">Delete</a>
+  </div>
+
+</div>
+
+{% endfor %}
+</div>
+
+<!-- ================= QR MODAL ================= -->
+<div id="qrModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(6px);
+align-items:center;
+justify-content:center;
+z-index:9999;">
+
+  <div style="background:white;padding:26px;border-radius:20px;text-align:center">
+    <h3 style="margin-bottom:14px;">QR Preview</h3>
+    <img id="qrPreview" width="260">
+    <br><br>
+    <button class="btn btn-blue" onclick="closeQR()">Close</button>
+  </div>
+
+</div>
+
+<script>
+function openQR(src) {
+  document.getElementById("qrPreview").src = src;
+  document.getElementById("qrModal").style.display = "flex";
+}
+
+function closeQR() {
+  document.getElementById("qrModal").style.display = "none";
+}
+
+function copyLink(text) {
+  navigator.clipboard.writeText(text);
+  alert("✅ QR Link Copied!");
+}
+
+// ✅ LIVE SCAN COUNTER
+async function loadScans() {
+{% for b in businesses %}
+  const res{{loop.index}} = await fetch("/api/scans/{{ b.id }}");
+  const data{{loop.index}} = await res{{loop.index}}.json();
+  document.getElementById("scan-{{ b.id }}").innerText =
+    "Scans: " + data{{loop.index}}.count;
+{% endfor %}
+}
+loadScans();
+</script>
+
+{% endblock %}

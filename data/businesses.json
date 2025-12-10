@@ -1,0 +1,26 @@
+[
+    {
+        "id": "f75db39f",
+        "name": "Ved Khandelwal",
+        "owner_email": "yessoftech@gmail.com",
+        "google_review": "https://g.page/r/Cdx6wQT4g2qvEAE/review",
+        "status": "active",
+        "category": "digital_agency"
+    },
+    {
+        "id": "0eeb6d3e",
+        "name": "Ved Khandelwal",
+        "owner_email": "owner@gmail.com",
+        "google_review": "https://search.google.com/local/writereview?placeid=ChIJCZUIfLq1bTkR3HrBBPiDaq8",
+        "status": "active",
+        "category": "digital_agency"
+    },
+    {
+        "id": "527608b1",
+        "name": "Yes Softech ",
+        "owner_email": "kamalpawa6@gmail.com",
+        "google_review": "https://search.google.com/local/writereview?placeid=ChIJCZUIfLq1bTkR3HrBBPiDaq8",
+        "status": "active",
+        "category": "digital_agency"
+    }
+]

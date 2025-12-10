@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
+.stat-card h4 {
+  font-size: 13px;
+  color: var(--subtext);
+}
+
+.stat-card h1 {
+  font-size: 32px;
+  margin-top: 6px;
+}
+
+.panel {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.2);
+}
+
+.panel h3 {
+  margin-bottom: 14px;
+}
+
+.recent-review {
+  background: rgba(255,255,255,.05);
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.review-stars {
+  color: gold;
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#22c55e,#2563eb);
+  margin: auto;
+  margin-bottom: 12px;
+}
+
+.qr-btn {
+  display:inline-block;
+  background: #facc15;
+  padding: 10px 18px;
+  border-radius: 12px;
+  color: #111;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 10px;
+}
+</style>
+
+<div class="dashboard-grid">
+
+  <!-- LEFT -->
+  <div>
+
+    <!-- STATS -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <h4>Total Businesses</h4>
+        <h1>{{ total_business if total_business is defined else businesses|length }}</h1>
+      </div>
+
+      <div class="stat-card">
+        <h4>Total Scans</h4>
+        <h1>{{ total_scans if total_scans is defined else 0 }}</h1>
+      </div>
+
+      <div class="stat-card">
+        <h4>Account Type</h4>
+        <h1>{{ session["user"]["role"]|capitalize }}</h1>
+      </div>
+
+      <div class="stat-card">
+        <h4>Status</h4>
+        <h1>Active</h1>
+      </div>
+    </div>
+
+    <!-- SYSTEM OVERVIEW -->
+    <div class="panel">
+      <h3>System Overview</h3>
+      <p>You can manage businesses, generate QR codes and track review scans from here.</p>
+
+      <div style="margin-top:12px;">
+        <a href="/add-business" class="qr-btn">➕ Add Business</a>
+        <a href="/businesses" class="qr-btn" style="background:#2563eb;color:#fff;">📁 View Businesses</a>
+      </div>
+    </div>
+
+    <!-- ✅ SINGLE MASTER REVIEW SECTION -->
+    <div class="panel" style="margin-top:24px;">
+      <h3>Recent Reviews Activity</h3>
+
+      <div class="recent-review">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        “Perfect experience. Super quick review.”
+      </div>
+
+      <div class="recent-review">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        “Loved the service. Will visit again!”
+      </div>
+
+      <div class="recent-review">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        “Highly recommended. Easy QR scan.”
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT PROFILE PANEL (NO DUPLICATE REVIEWS NOW) -->
+  <div>
+    <div class="panel profile-card">
+      <div class="avatar"></div>
+      <h3>{{ session["user"]["email"] }}</h3>
+      <p style="color:var(--subtext)">@{{ session["user"]["role"] }}</p>
+
+      <a href="/businesses" class="qr-btn">Go To My Businesses</a>
+      <br><br>
+      <a href="/logout" class="qr-btn" style="background:#ef4444;color:#fff;">Logout</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

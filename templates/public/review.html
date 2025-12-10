@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave a Review</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="card" style="max-width:500px;margin:40px auto;text-align:center">
+
+    <h2>{{ business.name }}</h2>
+
+    <p style="font-size:22px;letter-spacing:2px">⭐⭐⭐⭐⭐</p>
+
+    <textarea id="reviewText" rows="4" style="width:100%;padding:12px;border-radius:10px;">
+{{ review_text }}
+    </textarea>
+
+    <br><br>
+
+    <button style="width:100%" onclick="postReview()">
+        Post on Google
+    </button>
+
+</div>
+
+<script>
+// ✅ Universal copy function with fallback
+function copyTextToClipboard(text) {
+    // Modern API (most browsers)
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+
+    // Fallback for older browsers
+    return new Promise((resolve, reject) => {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            const successful = document.execCommand("copy");
+            document.body.removeChild(textarea);
+            if (successful) {
+                resolve();
+            } else {
+                reject();
+            }
+        } catch (err) {
+            document.body.removeChild(textarea);
+            reject(err);
+        }
+    });
+}
+
+function postReview() {
+    const text = document.getElementById("reviewText").value.trim();
+    const businessId = "{{ business.id }}";
+
+    copyTextToClipboard(text).then(() => {
+        alert("✅ Review text copied!\nNow paste it in Google and submit the review.");
+        const url = `/redirect-review?bid=${businessId}`;
+        window.location.href = url;
+    }).catch(() => {
+        alert("⚠️ Your browser blocked auto copy.\nPlease manually copy the text before posting.");
+        const url = `/redirect-review?bid=${businessId}`;
+        window.location.href = url;
+    });
+}
+</script>
+
+</body>
+</html>

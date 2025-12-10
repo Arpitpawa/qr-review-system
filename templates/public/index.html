@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Review System – Grow Your Reviews</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background: #c7f000;
+      color: #111;
+    }
+
+    /* ================= NAVBAR (LINKTREE STYLE) ================= */
+    .navbar-wrapper {
+      width: 100%;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar {
+      width: 92%;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 50px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: #e5e5e5;
+    }
+
+    .nav-btn.primary {
+      background: #111;
+      color: #fff;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 46px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #222;
+      margin-bottom: 24px;
+    }
+
+    .hero-form {
+      display: flex;
+      gap: 12px;
+    }
+
+    .hero-form input {
+      padding: 14px;
+      width: 280px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .hero-form button {
+      padding: 14px 26px;
+      border-radius: 30px;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero-img {
+      background: #a3e635;
+      border-radius: 40px;
+      height: 360px;
+    }
+
+    /* ================= FEATURE SECTIONS ================= */
+    .section {
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .blue { background: #2563eb; color: #fff; }
+    .red { background: #7f1d1d; color: #fff; }
+    .light { background: #eef5dc; }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .section p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .section a {
+      text-decoration: none;
+      background: #fff;
+      color: #111;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .img-box {
+      height: 280px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ================= STATS ================= */
+    .stats {
+      text-align: center;
+      padding: 80px 40px;
+      background: #fff;
+    }
+
+    .stats h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .logo-box {
+      height: 80px;
+      background: #eee;
+      border-radius: 16px;
+    }
+
+    /* ================= FAQ ================= */
+    .faq {
+      background: #7f1d1d;
+      color: #fff;
+      padding: 80px 40px;
+    }
+
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.1);
+      padding: 16px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    /* ================= CTA ================= */
+    .cta {
+      background: #5b2cff;
+      color: #fff;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .cta input {
+      padding: 14px;
+      width: 280px;
+      border-radius: 12px;
+      border: none;
+      margin-right: 10px;
+    }
+
+    .cta button {
+      padding: 14px 26px;
+      border-radius: 30px;
+      background: #c7f000;
+      border: none;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background: #111;
+      color: #999;
+      text-align: center;
+      padding: 24px;
+      font-size: 14px;
+    }
+
+    @media(max-width: 900px) {
+      .hero, .section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-form {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<div class="navbar-wrapper">
+  <div class="navbar">
+    <div class="logo">QR Review</div>
+
+    <div class="nav-links">
+  {% if session.get("user") %}
+
+    {% if session["user"]["role"] == "admin" %}
+      <a href="/admin/dashboard">Dashboard</a>
+    {% else %}
+      <a href="/dashboard">Dashboard</a>
+    {% endif %}
+
+    <a href="/logout" class="nav-btn">Logout</a>
+
+  {% else %}
+    <a href="#features">Features</a>
+    <a href="#faq">FAQ</a>
+    <a href="/login" class="nav-btn">Login</a>
+    <a href="/signup" class="nav-btn primary">Sign Up</a>
+  {% endif %}
+</div>
+
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div>
+    <h1>Boost your Google reviews with one smart QR.</h1>
+    <p>One QR. One tap. More 5-star reviews for your business.</p>
+
+    <form class="hero-form" onsubmit="goToSignup(event)">
+      <input type="email" id="heroEmail" placeholder="Enter your email" required>
+      <button type="submit">Get Started</button>
+    </form>
+  </div>
+
+  <div class="hero-img"></div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="section blue" id="features">
+  <div class="img-box"></div>
+  <div>
+    <h2>Create QR in minutes</h2>
+    <p>Generate smart QR codes for any business and start collecting reviews instantly.</p>
+    <a href="/signup">Start Now</a>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="section red">
+  <div>
+    <h2>Share your QR anywhere</h2>
+    <p>Print on bills, tables, posters or share on WhatsApp with one tap.</p>
+    <a href="/signup">Explore</a>
+  </div>
+  <div class="img-box"></div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="section light">
+  <div class="img-box"></div>
+  <div>
+    <h2>Track scans & conversions</h2>
+    <p>See how many users scanned your QR and reached Google review page.</p>
+    <a href="/signup">See Dashboard</a>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <h2>Trusted analytics for growing businesses</h2>
+  <div class="logos">
+    <div class="logo-box"></div>
+    <div class="logo-box"></div>
+    <div class="logo-box"></div>
+    <div class="logo-box"></div>
+    <div class="logo-box"></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <h2>Questions? Answered.</h2>
+
+  <div class="faq-item">Why do I need QR reviews?</div>
+  <div class="faq-item">Is this safe for Google policy?</div>
+  <div class="faq-item">Can I use it for multiple businesses?</div>
+  <div class="faq-item">Does it work on mobile?</div>
+  <div class="faq-item">Is there any monthly charge?</div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <h2>Jumpstart your 5-star growth today</h2>
+  <p>Create your first smart QR within minutes.</p>
+
+  <br><br>
+  <input type="email" placeholder="Your email">
+  <button onclick="location.href='/signup'">Get Started</button>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<div class="footer">
+  © 2025 QR Review System • Powered by YES Softech
+</div>
+
+<script>
+function goToSignup(e) {
+  e.preventDefault();
+  const email = document.getElementById("heroEmail").value;
+  window.location.href = "/signup?email=" + encodeURIComponent(email);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.analytics-card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+.analytics-card h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+</style>
+
+<h2 style="margin-bottom:20px;">📊 Analytics Overview</h2>
+
+<div class="analytics-grid">
+  <div class="analytics-card">
+    <h3>Total Businesses</h3>
+    <h1>{{ businesses | length }}</h1>
+  </div>
+
+  <div class="analytics-card">
+    <h3>Total Scans</h3>
+    <h1 id="totalScans">0</h1>
+  </div>
+
+  <div class="analytics-card">
+    <h3>Active Businesses</h3>
+    <h1>
+      {{ businesses | selectattr("status","equalto","active") | list | length }}
+    </h1>
+  </div>
+</div>
+
+<br>
+
+<div class="analytics-grid">
+  <div class="analytics-card">
+    <h3>Scans per Business</h3>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <div class="analytics-card">
+    <h3>Daily Scan Trend</h3>
+    <canvas id="lineChart"></canvas>
+  </div>
+</div>
+
+<script>
+const businesses = {{ businesses|tojson }};
+
+let labels = [];
+let scanCounts = [];
+let totalScans = 0;
+
+async function loadAnalytics() {
+  for (let b of businesses) {
+    const res = await fetch(`/api/scans/${b.id}`);
+    const data = await res.json();
+    labels.push(b.name);
+    scanCounts.push(data.count);
+    totalScans += data.count;
+  }
+
+  document.getElementById("totalScans").innerText = totalScans;
+
+  // ✅ BAR CHART
+  new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Scans",
+        data: scanCounts,
+        backgroundColor: "#2563eb"
+      }]
+    }
+  });
+
+  // ✅ LINE CHART (Dummy daily trend)
+  new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+      labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+      datasets: [{
+        label: "Scans",
+        data: [2,4,6,3,7,9,5],
+        borderColor: "#22c55e",
+        fill: false,
+        tension: 0.3
+      }]
+    }
+  });
+}
+loadAnalytics();
+</script>
+
+{% endblock %}

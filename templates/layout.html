@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard – QR Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* ===== THEME VARIABLES ===== */
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --subtext: #475569;
+      --primary: #2563eb;
+      --sidebar: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    body.dark {
+      --bg: #020617;
+      --card: #0f172a;
+      --text: #f9fafb;
+      --subtext: #94a3b8;
+      --primary: #22c55e;
+      --sidebar: #020617;
+      --border: #1e293b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, system-ui, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      transition: all .3s ease;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 250px;
+      background: var(--sidebar);
+      padding: 28px 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 28px;
+      color: var(--primary);
+    }
+
+    .menu a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      padding: 14px 16px;
+      border-radius: 12px;
+      transition: 0.25s;
+      font-weight: 600;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+    }
+
+    .menu a:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ===== MAIN AREA ===== */
+    .main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .email {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .toggle-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 10px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+      transition: .3s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    @media(max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+      body {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="brand">QR Review</div>
+
+  <div class="menu">
+
+  {% if session["user"]["role"] == "admin" %}
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/businesses">All Businesses</a>
+    <a href="/add-business">Add Business</a>
+    <a href="/analytics">Analytics</a>
+  {% else %}
+    <a href="/owner/dashboard">Dashboard</a>
+    <a href="/businesses">My Businesses</a>
+    <a href="/add-business">Add Business</a>
+  {% endif %}
+
+  <a href="/logout">Logout</a>
+</div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <div class="email">{{ session["user"]["email"] }}</div>
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+
+  {% block content %}{% endblock %}
+
+</div>
+
+<!-- ✅ PERFECT DARK/LIGHT TOGGLE SCRIPT -->
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+}
+
+(function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+  }
+})();
+</script>
+
+</body>
+</html>

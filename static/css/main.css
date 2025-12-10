@@ -1,0 +1,366 @@
+body {
+    font-family: "Inter", Arial, sans-serif;
+    margin: 0;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.container {
+    padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* ✅ Cards */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ✅ Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+th {
+    background: #f1f5f9;
+    text-align: left;
+    padding: 12px;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+td img {
+    border-radius: 8px;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* ✅ Add Business Button */
+.add-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    background: #22c55e;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+}
+
+.add-btn:hover {
+    background: #16a34a;
+}
+/* ✅ BASE */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+.light {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.dark {
+    background: #020617;
+    color: #e5e7eb;
+}
+
+/* ✅ TOPBAR */
+.topbar {
+    height: 60px;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.top-right a {
+    margin-left: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.top-right a:hover {
+    text-decoration: underline;
+}
+
+.logout-btn {
+    padding: 6px 14px;
+    background: #ef4444;
+    border-radius: 8px;
+}
+
+/* ✅ THEME BUTTON */
+.theme-btn {
+    margin-left: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ✅ MAIN APP AREA */
+.app-wrapper {
+    padding: 40px 24px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ✅ CARD STYLE */
+.card {
+    background: white;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.dark .card {
+    background: #0f172a;
+}
+
+/* ✅ FORM INPUTS */
+input, select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+    background: #020617;
+    color: white;
+    border: 1px solid #334155;
+}
+
+/* ✅ BUTTONS */
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* ✅ TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+th {
+    background: #f1f5f9;
+    padding: 12px;
+    text-align: left;
+}
+
+.dark th {
+    background: #1e293b;
+}
+
+td {
+    padding: 12px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.dark td {
+    border-color: #334155;
+}
+
+/* ✅ LINKS */
+a {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.dark a {
+    color: #60a5fa;
+}
+
+/* ✅ ADD BUTTON */
+.add-btn {
+    display: inline-block;
+    background: #22c55e;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+/* ✅ LAYOUT */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ✅ SIDEBAR */
+.sidebar {
+    width: 230px;
+    background: linear-gradient(180deg, #2563eb, #1d4ed8);
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .brand {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    color: white;
+    margin-bottom: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.sidebar .theme-btn {
+    margin-top: 20px;
+    background: white;
+    color: #2563eb;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    background: #ef4444;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* ✅ MAIN AREA */
+.main-content {
+    flex: 1;
+    padding: 30px;
+}
+/* ✅ RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .sidebar a {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    input, select, textarea, button {
+        font-size: 14px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .sidebar .brand {
+        display: none;
+    }
+}
